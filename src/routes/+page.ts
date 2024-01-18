@@ -1,3 +1,10 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+import type { Load } from '@sveltejs/kit';
+
+export const load: Load = async ({ setHeaders }) => {
+	setHeaders({
+		'Cross-Origin-Embedder-Policy': 'require-corp',
+		'Cross-Origin-Opener-Policy': 'same-origin'
+	});
+};
+
+export const csr = true;
